@@ -4,6 +4,7 @@ import SwiftUI
 enum Theme: String, CaseIterable, Identifiable {
     case monochrome = "Black & White"
     case cream = "Cream"
+    case coffee = "Coffee"
     case lavender = "Lavender"
     case mint = "Mint"
     case pink = "Pink"
@@ -15,6 +16,7 @@ enum Theme: String, CaseIterable, Identifiable {
         switch self {
         case .monochrome: return .white
         case .cream: return Color(red: 1.0, green: 0.96, blue: 0.90)
+        case .coffee: return Color(red: 0.82, green: 0.71, blue: 0.60)
         case .lavender: return Color(red: 0.94, green: 0.92, blue: 0.99)
         case .mint: return Color(red: 0.89, green: 0.96, blue: 0.92)
         case .pink: return Color(red: 1.0, green: 0.91, blue: 0.94)
@@ -26,10 +28,11 @@ enum Theme: String, CaseIterable, Identifiable {
         switch self {
         case .monochrome: return .black
         case .cream: return Color(red: 0.32, green: 0.20, blue: 0.14)
-        case .lavender: return Color(red: 0.27, green: 0.20, blue: 0.42)
-        case .mint: return Color(red: 0.12, green: 0.30, blue: 0.23)
-        case .pink: return Color(red: 0.39, green: 0.15, blue: 0.24)
-        case .sky: return Color(red: 0.13, green: 0.25, blue: 0.38)
+        case .coffee: return Color(red: 0.22, green: 0.12, blue: 0.08)
+        case .lavender: return Color(red: 0.39, green: 0.32, blue: 0.51)
+        case .mint: return Color(red: 0.25, green: 0.40, blue: 0.33)
+        case .pink: return Color(red: 0.52, green: 0.28, blue: 0.35)
+        case .sky: return Color(red: 0.26, green: 0.36, blue: 0.48)
         }
     }
 }
@@ -46,7 +49,7 @@ final class TimerModel: ObservableObject {
 
     init() {
         let defaults = UserDefaults.standard
-        theme = Theme(rawValue: defaults.string(forKey: "theme") ?? "") ?? .monochrome
+        theme = Theme(rawValue: defaults.string(forKey: "theme") ?? "") ?? .cream
         let focus = defaults.integer(forKey: "focusMinutes")
         let rest = defaults.integer(forKey: "breakMinutes")
         state = TimerState(
